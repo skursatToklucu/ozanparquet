@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Lock, Mail, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../lib/AuthContext';
+import { getUrl } from '../../lib/utils';
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ export default function AdminLoginPage() {
 
   useEffect(() => {
     if (isAdmin) {
-      window.history.pushState({}, '', '/admin');
+      window.history.pushState({}, '', getUrl('/admin'));
       window.dispatchEvent(new PopStateEvent('popstate'));
     }
   }, [isAdmin]);
@@ -95,7 +96,7 @@ export default function AdminLoginPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <a href="/" className="text-sm text-slate-600 hover:text-amber-600 transition-colors">
+            <a href={getUrl('/')} className="text-sm text-slate-600 hover:text-amber-600 transition-colors">
               ← Ana Sayfaya Dön
             </a>
           </div>

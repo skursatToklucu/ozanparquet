@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '../../lib/AuthContext';
+import { getUrl } from '../../lib/utils';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -27,21 +28,21 @@ export default function AdminLayout({ children, currentPage = 'dashboard' }: Adm
   const { adminUser, signOut } = useAuth();
 
   const navigation = [
-    { id: 'dashboard', name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-    { id: 'products', name: 'Ürünler', href: '/admin/products', icon: Package },
-    { id: 'categories', name: 'Kategoriler', href: '/admin/categories', icon: FolderTree },
-    { id: 'blog', name: 'Blog', href: '/admin/blog', icon: FileText },
-    { id: 'gallery', name: 'Galeri', href: '/admin/gallery', icon: Image },
-    { id: 'testimonials', name: 'Yorumlar', href: '/admin/testimonials', icon: MessageSquare },
-    { id: 'faq', name: 'SSS', href: '/admin/faq', icon: HelpCircle },
-    { id: 'contacts', name: 'İletişim', href: '/admin/contacts', icon: Mail },
-    { id: 'quotes', name: 'Teklif Talepleri', href: '/admin/quotes', icon: FileQuestion },
-    { id: 'settings', name: 'Site Ayarları', href: '/admin/settings', icon: Settings },
+    { id: 'dashboard', name: 'Dashboard', href: getUrl('/admin'), icon: LayoutDashboard },
+    { id: 'products', name: 'Ürünler', href: getUrl('/admin/products'), icon: Package },
+    { id: 'categories', name: 'Kategoriler', href: getUrl('/admin/categories'), icon: FolderTree },
+    { id: 'blog', name: 'Blog', href: getUrl('/admin/blog'), icon: FileText },
+    { id: 'gallery', name: 'Galeri', href: getUrl('/admin/gallery'), icon: Image },
+    { id: 'testimonials', name: 'Yorumlar', href: getUrl('/admin/testimonials'), icon: MessageSquare },
+    { id: 'faq', name: 'SSS', href: getUrl('/admin/faq'), icon: HelpCircle },
+    { id: 'contacts', name: 'İletişim', href: getUrl('/admin/contacts'), icon: Mail },
+    { id: 'quotes', name: 'Teklif Talepleri', href: getUrl('/admin/quotes'), icon: FileQuestion },
+    { id: 'settings', name: 'Site Ayarları', href: getUrl('/admin/settings'), icon: Settings },
   ];
 
   const handleSignOut = async () => {
     await signOut();
-    window.history.pushState({}, '', '/admin/login');
+    window.history.pushState({}, '', getUrl('/admin/login'));
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
@@ -116,7 +117,7 @@ export default function AdminLayout({ children, currentPage = 'dashboard' }: Adm
 
             <div className="flex items-center gap-4">
               <a
-                href="/"
+                href={getUrl('/')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-slate-600 hover:text-amber-600 transition-colors"

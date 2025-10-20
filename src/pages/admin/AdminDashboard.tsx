@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Package, FileText, Image, MessageSquare, Mail, FileQuestion, TrendingUp } from 'lucide-react';
 import AdminLayout from './AdminLayout';
 import { supabase } from '../../lib/supabase';
+import { getUrl } from '../../lib/utils';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -80,21 +81,21 @@ export default function AdminDashboard() {
           <h2 className="text-xl font-semibold text-slate-800 mb-4">Hızlı Erişim</h2>
           <div className="space-y-3">
             <a
-              href="/admin/products"
+              href={getUrl('/admin/products')}
               className="block p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
             >
               <div className="font-medium text-slate-800">Yeni Ürün Ekle</div>
               <div className="text-sm text-slate-600">Ürün kataloğuna yeni ürün ekleyin</div>
             </a>
             <a
-              href="/admin/blog"
+              href={getUrl('/admin/blog')}
               className="block p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
             >
               <div className="font-medium text-slate-800">Yeni Blog Yazısı</div>
               <div className="text-sm text-slate-600">Blog'a yeni içerik ekleyin</div>
             </a>
             <a
-              href="/admin/gallery"
+              href={getUrl('/admin/gallery')}
               className="block p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
             >
               <div className="font-medium text-slate-800">Galeri Yönetimi</div>
